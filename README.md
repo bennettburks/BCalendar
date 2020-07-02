@@ -1,2 +1,2 @@
 # BCalendar
-A simple calendar application
+A simple calendar application!
