@@ -16,7 +16,7 @@ void createFile(std::string filename)
 
 void addToFile(std::string filename)
 {
-    std::ofstream file("resources/" + filename);
+    std::ofstream file("resources/" + filename, std::ios::app);
 
     if(!file)
     {
@@ -24,11 +24,11 @@ void addToFile(std::string filename)
         return;
     } 
 
-    std::string input = "";
-    std::cout << "<< What would you like to add?\n";
+    std::string input;
     std::cin.ignore(); //pressing enter in main function registers as cin, this ignores it
+    std::cout << "<< What would you like to add?\n";
     std::getline(std::cin, input);
-    file << input;
+    file << input << '\n';
 
     while(1)
     {
@@ -37,7 +37,7 @@ void addToFile(std::string filename)
         if(input == "no") {
             break;
         } else {
-            file << "\n" << input;
+            file << input << '\n';
         }
     }
 
