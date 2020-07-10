@@ -3,15 +3,19 @@
 
 void createFile(std::string filename)
 {
-    std::ofstream file("resources/" + filename);
-
-    if(!file)
+    std::ifstream dummyfile("resources/" + filename); //checks if file exists
+    if(!dummyfile) 
     {
-        std::cerr << "Error: file \"" << filename << "\" not created!\n";
-        return;
+        std::ofstream file("resources/" + filename);
+
+        if(!file)
+        {
+            std::cerr << "Error: file \"" << filename << "\" not created!\n";
+            return;
     } 
 
     file.close();
+    }
 }
 
 void addToFile(std::string filename)
