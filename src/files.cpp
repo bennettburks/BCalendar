@@ -1,12 +1,14 @@
 #include <fstream>
 #include <iostream>
+#include <string>
 
 void createFile(std::string filename)
 {
-    std::ifstream dummyfile("resources/" + filename); //checks if file exists
+    //TODO: create directory for file
+    std::ifstream dummyfile(filename); //checks if file exists
     if(!dummyfile) 
     {
-        std::ofstream file("resources/" + filename);
+        std::ofstream file(filename);
 
         if(!file)
         {
@@ -20,11 +22,11 @@ void createFile(std::string filename)
 
 void addToFile(std::string filename)
 {
-    std::ofstream file("resources/" + filename, std::ios::app);
+    std::ofstream file(filename, std::ios::app);
 
     if(!file)
     {
-        std::cerr << "Error: file \"" << filename << "\" not created!\n";
+        std::cerr << "Error: file \"" << filename << "\" doesn't exist!\n";
         return;
     } 
 
@@ -50,7 +52,7 @@ void addToFile(std::string filename)
 
 void readFile(std::string filename)
 {
-    std::ifstream file("resources/" + filename);
+    std::ifstream file(filename);
 
     if(!file)
     {
