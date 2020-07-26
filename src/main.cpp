@@ -36,7 +36,6 @@ int main()
 	std::cout << "---------------------------------\n";
 
 	createFile("calendar.dat");
-	createFile("dates.dat");
 
 	std::cout << "<< Commands: add, list, remove, exit.\n";
 

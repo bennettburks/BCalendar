@@ -5,7 +5,6 @@
 
 void createFile(std::string filename)
 {
-	//TODO: create directory for file
 	std::ifstream dummyfile(filename); //checks if file exists
 	if (!dummyfile)
 	{
@@ -32,7 +31,7 @@ void addToFile(std::string filename)
 	}
 
 	std::string input;
-	std::cin.ignore(); //pressing enter in main function registers as cin, this ignores it
+	std::cin.ignore(); //prevents last cin from skipping this next one
 	std::cout << "<< What would you like to add?\n";
 	std::getline(std::cin, input);
 	file << input << '\n';
@@ -64,7 +63,7 @@ void readFile(std::string filename)
 
 	std::string output;
 	std::cout << "---------------------------------\n";
-	while (std::getline(file, output)) //while the file still has lines to output
+	while (std::getline(file, output)) //cycles through all lines in file
 	{
 		std::cout << output << std::endl;
 	}
@@ -86,7 +85,7 @@ int listFile(std::string filename)
 	std::string output;
 	std::cout << "---------------------------------\n";
 	int i = 0;
-	while (std::getline(file, output)) //while the file still has lines to output
+	while (std::getline(file, output))
 	{
 		i++;
 		std::cout << "(" << i << "): " << output << std::endl;
@@ -120,7 +119,7 @@ void removeFromFile(std::string filename)
 			return;
 		}
 		
-		//creates an adjustable vector of all calendar dates except the one we want to remove
+		//adjustable vector of all file lines except the one we want to remove
 		std::vector<std::string> data;
 
 		std::string output;
