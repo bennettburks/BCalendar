@@ -1,7 +1,7 @@
 #ifndef FILES_HPP
 #define FILES_HPP
 
-#include <iostream>
+#include <string>
 
 // Creates a blank file of any type
 void createFile(std::string filename);

@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "calendar.hpp"
+
 void createFile(std::string filename)
 {
 	std::ifstream dummyfile(filename); //checks if file exists
@@ -30,23 +32,13 @@ void addToFile(std::string filename)
 		return;
 	}
 
-	std::string input;
-	std::cin.ignore(); //prevents last cin from skipping this next one
-	std::cout << "<< What would you like to add?\n";
-	std::getline(std::cin, input);
-	file << input << '\n';
+	std::vector<std::string> event = addEvent();
 
-	while (1)
+	for (auto i = event.cbegin(); i != event.cend(); i++)
 	{
-		std::cout << "<< Anything else? (If not, type \"no\")\n";
-		std::getline(std::cin, input);
-		if (input == "no") {
-			break;
-		}
-		else {
-			file << input << '\n';
-		}
+		file << *i << '\n';
 	}
+
 
 	file.close();
 }
