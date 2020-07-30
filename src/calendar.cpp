@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#include "files.hpp"
+
 std::vector<std::string> addEvent()
 {
 	std::vector<std::string> event;
@@ -36,3 +38,34 @@ std::vector<std::string> addEvent()
 	}
 	return event;
 }
+
+void readEvents(std::string filename)
+{
+	std::vector<std::string> event = readFile(filename);
+
+	std::cout << "---------------------------------\n";
+	for (auto i = event.cbegin(); i != event.cend(); i++)
+	{
+		std::cout << *i << '\n';
+	}
+	std::cout << "---------------------------------\n";
+}
+
+int listEvents(std::string filename)
+{
+	std::vector<std::string> event = readFile(filename);
+
+	std::cout << "---------------------------------\n";
+	int counter = 0;
+	for (auto i = event.cbegin(); i != event.cend(); i++)
+	{
+		counter++;
+		std::cout << "(" << counter << "): " << *i << '\n';
+	}
+	std::cout << "---------------------------------\n";
+	return counter;
+}
+
+
+
+

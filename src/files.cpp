@@ -43,54 +43,32 @@ void addToFile(std::string filename)
 	file.close();
 }
 
-void readFile(std::string filename)
+std::vector<std::string> readFile(std::string filename)
 {
+	std::vector<std::string> event;
 	std::ifstream file(filename);
 
 	if (!file)
 	{
 		std::cerr << "Error: file \"" << filename << "\" doesn't exist!\n";
-		return;
+		event.push_back("<ERROR: File does not exist.>"); //TODO: either change or implement this in other code
+		return event;
 	}
 
-	std::string output;
-	std::cout << "---------------------------------\n";
+	std::string output = "";
+
 	while (std::getline(file, output)) //cycles through all lines in file
 	{
-		std::cout << output << std::endl;
+		event.push_back(output);
 	}
-	std::cout << "---------------------------------\n";
 
 	file.close();
-}
-
-int listFile(std::string filename)
-{
-	std::ifstream file(filename);
-
-	if (!file)
-	{
-		std::cerr << "Error: file \"" << filename << "\" doesn't exist!\n";
-		return 0;
-	}
-
-	std::string output;
-	std::cout << "---------------------------------\n";
-	int i = 0;
-	while (std::getline(file, output))
-	{
-		i++;
-		std::cout << "(" << i << "): " << output << std::endl;
-	}
-	std::cout << "---------------------------------\n";
-
-	file.close();
-	return i;
+	return event;
 }
 
 void removeFromFile(std::string filename)
 {
-	const int max = listFile(filename);
+	const int max = listEvents(filename);
 	int input = 0;
 
 	std::cout << "<< What would you like to remove? (int)\n";

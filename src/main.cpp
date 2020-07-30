@@ -1,5 +1,6 @@
 #include <iostream>
 #include "files.hpp"
+#include "calendar.hpp"
 
 //TODO: see if there's a good substitution for this (global variable)
 bool running = true;
@@ -13,7 +14,7 @@ void checkInput(std::string input)
 	}
 	else if (input == "list") 
 	{
-		readFile("calendar.dat");
+		readEvents("calendar.dat");
 	}
 	else if (input == "remove")
 	{
