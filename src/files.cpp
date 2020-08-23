@@ -73,6 +73,7 @@ void removeFromFile(std::string filename)
 
 	std::cout << "<< What would you like to remove? (int)\n";
 	std::cin >> input;
+	std::cout << input*2-1 << " and " << input*2 << "\n";
 
 	if (input > max || input == 0)
 	{
@@ -96,7 +97,7 @@ void removeFromFile(std::string filename)
 		int currentValue = 1;
 		while (std::getline(readfile, output))
 		{
-			if (currentValue != input)
+			if (currentValue != input*2 && currentValue != (input*2-1))
 			{
 				data.push_back(output);
 			}

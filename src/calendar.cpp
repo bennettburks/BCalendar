@@ -7,32 +7,30 @@
 std::vector<std::string> addEvent()
 {
 	std::vector<std::string> event;
-	std::string data, date, output = "";
+	std::string output = "";
 
 	std::cin.ignore(); //prevents last cin from skipping this next one
 	std::cout << "<< What would you like to add?\n";
-	std::getline(std::cin, data);
+	std::getline(std::cin, output);
+    event.push_back(output);
 	std::cout << "<< What date?\n"; //TODO: when Qt is implemented, make this part user intuitive
-	std::getline(std::cin, date);
-
-	output = data + "<date>" + date;
+	std::getline(std::cin, output);
 	event.push_back(output);
 
 	while (1)
 	{
 		std::cout << "<< Anything else? (If not, type \"no\")\n";
-		std::getline(std::cin, data);
+		std::getline(std::cin, output);
 
-		if (data == "no") 
+		if (output == "no")
 		{
 			break;
 		}
 		else 
 		{
+            event.push_back(output);
 			std::cout << "<< What date?\n";
-			std::getline(std::cin, date);
-
-			output = data + "<date>" + date;
+			std::getline(std::cin, output);
 			event.push_back(output);
 		}
 	}
@@ -46,7 +44,11 @@ void readEvents(std::string filename)
 	std::cout << "---------------------------------\n";
 	for (auto i = event.cbegin(); i != event.cend(); i++)
 	{
-		std::cout << *i << '\n';
+	    std::string body = *i;
+	    i++;
+	    std::string date = *i;
+		std::cout << body << " - " << date << "\n";
+
 	}
 	std::cout << "---------------------------------\n";
 }
@@ -59,8 +61,11 @@ int listEvents(std::string filename)
 	int counter = 0;
 	for (auto i = event.cbegin(); i != event.cend(); i++)
 	{
+        std::string body = *i;
+        i++;
+        std::string date = *i;
 		counter++;
-		std::cout << "(" << counter << "): " << *i << '\n';
+		std::cout << "(" << counter << "): " << body << " - " << date << "\n";
 	}
 	std::cout << "---------------------------------\n";
 	return counter;
