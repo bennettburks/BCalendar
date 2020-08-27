@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "files.hpp"
 
 std::string getInput();
 std::string parseDate();
+std::string formatDate(int date);
 
 std::vector<std::string> addEvent() {
     std::vector<std::string> event;
@@ -41,8 +43,9 @@ void readEvents(std::string filename) {
     for (auto i = event.cbegin(); i != event.cend(); i++) {
         std::string body = *i;
         i++;
-        std::string date = *i;
-        std::cout << body << " - " << date << "\n";
+        int date = std::stoi(*i);
+        std::string dateOutput = formatDate(date);
+        std::cout << body << " - " << dateOutput << "\n";
 
     }
     std::cout << "---------------------------------\n";
@@ -56,9 +59,10 @@ int listEvents(std::string filename) {
     for (auto i = event.cbegin(); i != event.cend(); i++) {
         std::string body = *i;
         i++;
-        std::string date = *i;
+        int date = std::stoi(*i);
+        std::string dateOutput = formatDate(date);
         counter++;
-        std::cout << "(" << counter << "): " << body << " - " << date << "\n";
+        std::cout << "(" << counter << "): " << body << " - " << dateOutput << "\n";
     }
     std::cout << "---------------------------------\n";
     return counter;
@@ -66,7 +70,7 @@ int listEvents(std::string filename) {
 
 std::string parseDate() {
     int date;
-    std::string output;
+    std::string output; //TODO: allow for user to put "today" and other keywords to shorten date
 
     //gets data
     while (true) {
@@ -86,10 +90,23 @@ std::string parseDate() {
 
     //converts date
     //TODO: check current year
-    int month = date/100;
-    int day = date%100;
-    output = std::to_string(month) + "-" + std::to_string(day) + "-" + "2020";
+    int year = 2020;
+    date = (year*10000) + date;
+
+    output = std::to_string(date);
+    std::cout << output << '\n';
     return output;
+}
+
+std::string formatDate(int date) {
+    int year = date / 10000;
+    int month = (date % 10000) / 100;
+    int day = date % 100;
+
+    std::ostringstream output;
+    output << month << "/" << day << "/" << year;
+
+    return output.str();
 }
 
 std::string getInput() {

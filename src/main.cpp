@@ -1,9 +1,9 @@
 #include <iostream>
+#include <stdlib.h>
 #include "files.hpp"
 #include "calendar.hpp"
 
-//TODO: see if there's a good substitution for this (global variable)
-bool running = true;
+static bool running = true;
 
 //cycles through user input
 void checkInput(std::string input) {
